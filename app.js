@@ -1,9 +1,23 @@
-var express = require('express');
-var app = express()
+const express = require("express");
 
-app.get('/', function (req, res) {
-    res.send('Hello World!\n')
-})
+const bodyParser = require("body-parser");
+const app = express();
+const Files = require("./src/routes/files");
 
-var server = app.listen(3000);
-module.exports = server;
+const port = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use("/v1", Files);
+
+
+
+
+app.listen(port, function () {
+  console.log("Runnning on " + port);
+});
+
+
+module.exports = app;
