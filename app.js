@@ -7,8 +7,8 @@ const Files = require("./src/routes/files");
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use("/v1", Files);
 
